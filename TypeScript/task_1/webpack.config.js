@@ -4,11 +4,16 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
+
   entry: './js/main.ts',
+
   devtool: 'inline-source-map',
+  
   devServer: {
-    contentBase: './dist',
+    static: './dist',
   },
+
   module: {
     rules: [
       {
@@ -18,13 +23,16 @@ module.exports = {
       },
     ],
   },
+
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
   },
+
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

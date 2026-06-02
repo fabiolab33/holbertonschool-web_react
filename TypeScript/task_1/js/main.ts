@@ -1,41 +1,35 @@
-interface Teacher {
-  readonly firstName: string;
-  readonly lastName: string;
-  fullTimeEmployee: boolean;
-  yearsOfExperience?: number;
-  location: string;
-  [attribute: string]: any;
+interface StudentConstructor {
+  firstName: string;
+  lastName: string;
 }
 
-interface Directors extends Teacher {
-  numberOfReports: number;
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
 }
 
-interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
+class StudentClass implements StudentClassInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor({ firstName, lastName }: StudentConstructor) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
 }
 
-const teacher3: Teacher = {
-  firstName: 'John',
-  lastName: 'Doe',
-  fullTimeEmployee: true,
-  location: 'London',
-  numberOfReports: 17,
-};
+const student = new StudentClass({
+  firstName: "John",
+  lastName: "Doe",
+});
 
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
-};
-
-const printTeacher: printTeacherFunction = (
-  firstName: string,
-  lastName: string
-): string => `${firstName.charAt(0)}. ${lastName}`;
-
-console.log(teacher3);
-console.log(director1);
-console.log(printTeacher('John', 'Doe'));
+console.log(student.displayName());
+console.log(student.workOnHomework());
