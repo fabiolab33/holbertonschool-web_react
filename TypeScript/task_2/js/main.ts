@@ -73,5 +73,19 @@ function executeWork(employee: Employee): void {
 }
 
 // Tests
-console.log(createEmployee(200));
-console.log(createEmployee(1000));
+executeWork(createEmployee(200));
+executeWork(createEmployee(1000));
+
+type Subjects = 'Math' | 'History';
+
+// Function
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  return 'Teaching History';
+}
+
+// Tests
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
